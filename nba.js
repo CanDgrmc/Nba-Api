@@ -22,8 +22,8 @@ class Nba {
 
     /**
      * 
-     * @param {*} playerOrTeam 
-     * @param {*} seasonType 
+     * @param {*} playerOrTeam : (Player)|(Team)
+     * @param {*} seasonType : (Playoffs)|(All Star)|(Pre Season)
      * @param {*} leagueId 
      * @param {*} season 
      */
@@ -36,7 +36,7 @@ class Nba {
 
     /**
      * 
-     * @param {*} seasonType 
+     * @param {*} seasonType : (Playoffs)|(All Star)|(Pre Season)
      * @param {*} leagueId 
      */
 
