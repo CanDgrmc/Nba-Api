@@ -12,6 +12,8 @@ class Nba {
         this.request = new Request(config)
     }
 
+
+
     /**
      * @param {*} seasonType 
      * @param {*} leagueId 
@@ -20,19 +22,20 @@ class Nba {
     getAllTimeLeadersGrid = async (seasonType='Regular',leagueId='00') => await this.request.get(`alltimeleadersgrids?LeagueID=${leagueId}&PerMode=Totals&SeasonType=${seasonType}+Season&TopX=10`)
 
 
+
     /**
      * 
      * @param {*} playerOrTeam : (Player)|(Team)
      * @param {*} seasonType : (Playoffs)|(All Star)|(Pre Season)
      * @param {*} leagueId 
-     * @param {*} season 
+     * @param {*} season : '2019-20'
      */
     getAssistLeaders = async (playerOrTeam='Team',seasonType='Regular',leagueId='00',season=null) => {
         season = season || getCurrentSeason()
-        console.log({season})
-        success(`season ${season}`)
         return await this.request.get(`assistleaders?LeagueID=${leagueId}&PerMode=Totals&PlayerOrTeam=${playerOrTeam}&Season=${season}&SeasonType=${seasonType}+Season`)
     }
+
+
 
     /**
      * 
@@ -42,9 +45,11 @@ class Nba {
 
     getAllTimeLeadersGrid = async (seasonType='Regular',leagueId='00') => await this.request.get(`alltimeleadersgrids?LeagueID=${leagueId}&PerMode=Totals&SeasonType=${seasonType}+Season&TopX=10`)
 
+
+
     /**
      * 
-     * @param {*} season 
+     * @param {*} season  : '2019-20'
      * @param {*} category : 'GP',   'MIN',
                             'FGM',       'FGA',  'FG_PCT',
                             'FG3M',      'FG3A', 'FG3_PCT',
@@ -56,8 +61,8 @@ class Nba {
      * @param {*} leagueId 
      * @param {*} perMode : (Totals)|(PerGame)|(Per48)
      */
+
     leagueLeaders = async (season=null,category='PTS',seasonType='Playoffs',leagueId='00',perMode='PerGame') => {
-        // https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2019-20&SeasonType=Playoffs&StatCategory=PTS
         season = season || getCurrentSeason()
         return await this.request.get(`leagueLeaders?LeagueID=${leagueId}&PerMode=${perMode}&Scope=S&Season=${season}&SeasonType=${seasonType}&StatCategory=${category}`)
     }
