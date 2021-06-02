@@ -19,7 +19,7 @@ class Nba {
      * @param {*} leagueId 
      */
     
-    getAllTimeLeadersGrid = async (seasonType='Regular',leagueId='00') => await this.request.get(`alltimeleadersgrids?LeagueID=${leagueId}&PerMode=Totals&SeasonType=${seasonType}+Season&TopX=10`)
+    getAllTimeLeadersGrid = async (seasonType='Regular',leagueId='00') => this.request.get(`alltimeleadersgrids?LeagueID=${leagueId}&PerMode=Totals&SeasonType=${seasonType}+Season&TopX=10`)
 
 
 
@@ -32,7 +32,7 @@ class Nba {
      */
     getAssistLeaders = async (playerOrTeam='Team',seasonType='Regular',leagueId='00',season=null) => {
         season = season || getCurrentSeason()
-        return await this.request.get(`assistleaders?LeagueID=${leagueId}&PerMode=Totals&PlayerOrTeam=${playerOrTeam}&Season=${season}&SeasonType=${seasonType}+Season`)
+        return this.request.get(`assistleaders?LeagueID=${leagueId}&PerMode=Totals&PlayerOrTeam=${playerOrTeam}&Season=${season}&SeasonType=${seasonType}+Season`)
     }
 
 
@@ -62,9 +62,38 @@ class Nba {
      * @param {*} perMode : (Totals)|(PerGame)|(Per48)
      */
 
-    leagueLeaders = async (season=null,category='PTS',seasonType='Playoffs',leagueId='00',perMode='PerGame') => {
+    leagueLeaders = async (season=null,category='PTS', seasonType='Playoffs',leagueId='00',perMode='PerGame') => {
         season = season || getCurrentSeason()
-        return await this.request.get(`leagueLeaders?LeagueID=${leagueId}&PerMode=${perMode}&Scope=S&Season=${season}&SeasonType=${seasonType}&StatCategory=${category}`)
+        return this.request.get(`leagueLeaders?LeagueID=${leagueId}&PerMode=${perMode}&Scope=S&Season=${season}&SeasonType=${seasonType}&StatCategory=${category}`)
+    }
+
+    /**
+     * 
+     * @param {*} leagueId 
+     */
+    teamList = async (leagueId='00') => this.request.get(`commonTeamYears?LeagueID=${leagueId}`)
+
+    /**
+     * 
+     * @param {*} teamId 
+     * @param {*} season 
+     * @param {*} leagueId 
+     * @param {*} seasonType 
+     * @returns 
+     */
+
+    teamSummary = async (teamId=null, season=null, leagueId='00', seasonType='Playoffs') => {
+        return this.request.get(`teaminfocommon?LeagueID=${leagueId}&TeamID=${teamId}&Season=${season}&SeasonType=${seasonType}`)
+    }
+
+    /**
+     * 
+     * @param {*} teamId 
+     * @returns 
+     */
+
+    teamDetails = async (teamId=null) => {
+        return this.request.get(`teamdetails?TeamID=${teamId}`)
     }
 }
 
