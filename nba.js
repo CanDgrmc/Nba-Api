@@ -2,9 +2,7 @@
 const config = require('./config')
 const Request = require('./inc/request')
 const {success} = require('./inc/log')
-function getCurrentSeason(){
-    return `${new Date().getFullYear() -1}-${(new Date().getFullYear().toString().slice(2))}`
-}
+const {getCurrentSeason, TEAMS} = require('./constants')
 
 class Nba {
     request

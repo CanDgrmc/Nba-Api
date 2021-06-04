@@ -2,4 +2,6 @@ const {Nba} = require('./nba')
 
 const client = new Nba()
 
-client.leagueLeaders().then().catch(e => console.log(e))
+client.getAssistLeaders().then( res => {
+    console.log('res',res);
+}).catch(e => console.log(e))
